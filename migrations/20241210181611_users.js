@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  // Atributos user_id (PK) first_name, last_name, email (único), phone, password, role ('owner', 'employee', 'veterinarian', 'admin'), created_at, updated_at, licence (solo para 'veterinarians', puede ser nulo), years_experience (solo para 'veterinarians', puede ser nulo)
+  // Atributos user_id (PK) first_name, last_name, email (único), phone, password, role ('owner', 'employee', 'veterinarian', 'admin'), created_at, updated_at, licence (solo para 'veterinarians', puede ser nulo), years_experience (solo para 'veterinarians', puede ser nulo) active
   return knex.schema.hasTable('users').then(function (exists) {
     if (!exists) {
       return knex.schema.createTable('users', function (table) {
@@ -18,6 +18,7 @@ exports.up = function (knex) {
         table.timestamp('updated_at').defaultTo(knex.fn.now())
         table.string('licence', 255)
         table.integer('years_experience')
+        table.boolean('active').notNullable().defaultTo(true)
       })
     }
   })

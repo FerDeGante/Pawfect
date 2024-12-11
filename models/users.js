@@ -1,5 +1,3 @@
-// El modelo trae los datos de la DB de la tabla users
-
 // #1 traer la configuración del entorno de knex y su información de la base de datos
 const knex = require('../config')
 
@@ -12,12 +10,17 @@ const create = (bodyUser) => {
   return knex
     .insert(bodyUser) // Qué datos voy a insertar
     .into('users') // En qué tabla
-    .returning(['user_id', 'first_name', 'last_name', 'email', 'phone',
-      'role', 'created_at', 'updated_at', 'licence', 'years_experience']) // Qué datos voy a retornar
+    .returning(['user_id', 'first_name', 'last_name', 'email', 'phone', 'role', 'created_at', 'updated_at', 'licence', 'years_experience', 'password']) // Qué datos voy a retornar
 }
 // READ
-// UPDATE
-// DELETE
+// find all users
+const findAll = () => {
+  return knex
+    .select('*')
+    .from('users')
+    .where('active', true)
+}
 
 // #3 Exportar las funciones para que sean accesibles desde el controlador
 exports.create = create
+exports.findAll = findAll
