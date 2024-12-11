@@ -49,9 +49,48 @@ const findAllUsers = (req, res) => {
       res.status(400).json({ error: error.message })
     })
 }
+const findOneUser = (req, res) => {
+  const { idUser } = req.params // Extraer idUser de los parámetros de la URL
+  ModelUsers.findOne(idUser)
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({ error: 'Usuario no encontrado' })
+      }
+      res.status(200).json(user)
+    })
+    .catch((error) => {
+      res.status(400).json({ error: error.message })
+    })
+}
+
+// UPDATE
+const updateOneUser = (req, res) => {
+  ModelUsers.update(req.params.idUser, req.body)
+    .then(user => {
+      if (!user) {
+        return res.status(404).json({ error: 'Usuario no encontrado' })
+      }
+      res.status(200).json(user)
+    })
+}
+// DELETE
+const softDeleteOneUser = (req, res) => {
+  ModelUsers.softDelete(req.params.idUser)
+    .then(user => res.status(204).json())
+    .catch(error => res.status(400).json({ error: error.message }))
+}
+const destroyOneUser = (req, res) => {
+  ModelUsers.destroy(req.params.idUser)
+    .then(user => res.status(204).json())
+    .catch(error => res.status(400).json({ error: error.message }))
+}
 
 // #3 Exportar las funciones
 module.exports = {
   createUser,
-  findAllUsers
+  findAllUsers,
+  findOneUser,
+  updateOneUser,
+  softDeleteOneUser,
+  destroyOneUser
 }
