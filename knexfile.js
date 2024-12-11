@@ -17,6 +17,12 @@ module.exports = {
     migrations: {
       tableName: 'knex_migrations',
       directory: './migrations' // Esta es la carpeta donde se guardarán las migraciones
+    },
+    development: {
+
+      seeds: {
+        directory: './data/seeds'
+      }
     }
   },
 

@@ -11,7 +11,7 @@ exports.up = function (knex) {
         table.string('name', 255).notNullable()
         table.string('type', 255).notNullable()
         table.string('breed', 255).notNullable()
-        table.integer('birthdate').notNullable()
+        table.date('birthdate').notNullable()
         table.integer('fk_user_id').unsigned().references('users.user_id').onDelete('CASCADE').onUpdate('CASCADE')
         table.timestamp('created_at').defaultTo(knex.fn.now())
         table.timestamp('updated_at').defaultTo(knex.fn.now())
