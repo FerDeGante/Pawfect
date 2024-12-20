@@ -1,20 +1,29 @@
-// #1 Importar express
 const express = require('express')
 const PORT = process.env.PORT || 3000
 
-// Importar las rutas de mi vista users
+// Importar las rutas de mi vista users, pets y products
 const userRoutes = require('./routes/userRoutes')
-// #2 Crear una instancia de express
+const petRoutes = require('./routes/petRoutes')
+const productRoutes = require('./routes/productRoutes')
+
+// Crear una instancia de express
 const app = express()
 
-// #3 Congiurar express para que entienda JSON y datos de formularios
+// Configurar express para que entienda JSON y datos de formularios
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// #4 Crear rutas
-app.use('/api/v1', userRoutes)
+// Crear rutas
+app.use('/api/v1/users', userRoutes)
+app.use('/api/v1/pets', petRoutes)
+app.use('/api/v1/products', productRoutes)
 
-// #5 Levantar el servidor
-app.listen(3000, () => {
-  console.log('Servidor corriendo en el puerto 3000🚀')
+// Levantar el servidor
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}🚀`)
+})
+
+// Manejar rutas no encontradas
+app.use((req, res, next) => {
+  res.status(404).send('Ruta no encontrada')
 })

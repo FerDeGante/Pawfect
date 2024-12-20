@@ -18,8 +18,7 @@ exports.seed = async function (knex) {
       role: 'owner',
       created_at: knex.fn.now(),
       updated_at: knex.fn.now(),
-      licence: null,
-      years_experience: null
+      licence: null
     },
     {
       first_name: 'Albert',
@@ -30,8 +29,7 @@ exports.seed = async function (knex) {
       role: 'veterinarian',
       created_at: knex.fn.now(),
       updated_at: knex.fn.now(),
-      licence: 'VET12345', // Asumiendo que es un veterinario con licencia
-      years_experience: 20
+      licence: 'VET12345' // Asumiendo que es un veterinario con licencia
     },
     {
       first_name: 'Fernando',
@@ -42,8 +40,7 @@ exports.seed = async function (knex) {
       role: 'admin',
       created_at: knex.fn.now(),
       updated_at: knex.fn.now(),
-      licence: null,
-      years_experience: null
+      licence: null
     },
     {
       first_name: 'Princess',
@@ -54,8 +51,7 @@ exports.seed = async function (knex) {
       role: 'employee',
       created_at: knex.fn.now(),
       updated_at: knex.fn.now(),
-      licence: null,
-      years_experience: null
+      licence: null
     }
   ])
 }

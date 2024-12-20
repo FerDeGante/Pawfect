@@ -1,14 +1,17 @@
 const express = require('express')
 const router = express.Router()
-const userController = require('..//controllers/usersControllers')
+
+// Asegúrate de que los controladores estén correctamente importados
+const userController = require('../controllers/usersControllers')
+const { isAuth } = require('../middleware/authMiddleware')
 
 // Definir las rutas con el router
-router.post('/users', userController.createUser)
-router.get('/users', userController.findAllUsers)
-router.get('/users/:idUser', userController.findOneUser)
-router.patch('/users/:idUser', userController.updateOneUser)
-router.delete('/users/:idUser', userController.softDeleteOneUser)
-router.delete('/users/destroy/:idUser', userController.destroyOneUser)
+router.post('/', userController.createUser) // Sin middleware
+router.get('/', isAuth, userController.findAllUsers) // Con middleware
+router.get('/:idUser', userController.findOneUser)
+router.patch('/:idUser', userController.updateOneUser)
+router.delete('/:idUser', userController.softDeleteOneUser)
+router.delete('/destroy/:idUser', userController.destroyOneUser)
+router.post('/login', userController.login)
 
-// Exportar el router
 module.exports = router

@@ -10,7 +10,7 @@ const create = (bodyUser) => {
   return knex
     .insert(bodyUser) // Qué datos voy a insertar
     .into('users') // En qué tabla
-    .returning(['user_id', 'first_name', 'last_name', 'email', 'phone', 'role', 'created_at', 'updated_at', 'licence', 'years_experience', 'password']) // Qué datos voy a retornar
+    .returning(['user_id', 'first_name', 'last_name', 'email', 'phone', 'role', 'created_at', 'updated_at', 'licence', 'password']) // Qué datos voy a retornar
 }
 // READ
 // find all users
@@ -28,6 +28,24 @@ const findOne = (userId) => {
     .where('user_id', userId)
     .where('active', true)
 }
+// Buscar un usuario por email (para login)
+const findOneByEmail = (email) => {
+  return knex
+    .select('*')
+    .from('users')
+    .where('email', email)
+    .where('active', true)
+    .first() // Retorna solo un usuario
+}
+
+// Obtener el rol de un usuario por su ID
+const findRoleById = (userId) => {
+  return knex
+    .select('role')
+    .from('users')
+    .where('user_id', userId)
+    .first()
+}
 
 // UPDATE
 // actualizar un usuario
@@ -37,7 +55,7 @@ const update = (userId, bodyToUpdate) => {
     .from('users')
     .where('user_id', userId)
     .returning(['user_id', 'first_name', 'last_name', 'email',
-      'phone', 'role', 'created_at', 'updated_at', 'licence', 'years_experience', 'password'])
+      'phone', 'role', 'created_at', 'updated_at', 'licence', 'password'])
 }
 
 // DELETE
@@ -64,3 +82,5 @@ exports.findOne = findOne
 exports.update = update
 exports.softDelete = softDelete
 exports.destroy = destroy
+exports.findOneByEmail = findOneByEmail
+exports.findRoleById = findRoleById
