@@ -1,0 +1,383 @@
+// Variables
+$primary-color: #6C9BCF // Azul navbar
+$secondary-color: #A8D5BA // Verde footer
+$text-color: #333
+$background-color: #F9F9F9
+$accent-color: #FF9800 // Un color de acento, puedes cambiarlo por el que prefieras
+$text-light: #F9F9F9 // Color claro para texto en fondos oscuros
+
+// Layout General
+.app-container
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+
+.admin-layout
+  display: flex
+  flex-direction: row
+
+.content-container
+  flex: 1
+  display: flex
+  flex-direction: column
+  padding: 20px
+  width: 100%
+
+// Sidebar
+.sidebar
+  width: 60px
+  background-color: $primary-color
+  color: white
+  transition: width 0.3s ease
+  height: 100vh
+  position: fixed
+  top: 0
+  left: 0
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding-top: 10px
+
+  &.expanded
+    width: 200px
+
+  .sidebar-header
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    cursor: pointer
+
+  .sidebar-toggle
+    font-size: 1.5rem
+    cursor: pointer
+    margin-bottom: 15px
+
+  .nav-link
+    color: white !important
+    display: flex
+    align-items: center
+    padding: 10px
+    gap: 10px
+    width: 100%
+    text-align: left
+    transition: background 0.3s
+
+    &:hover
+      background: darken($primary-color, 10%)
+
+.sidebar-dropdown
+  display: flex
+  flex-direction: column
+  padding-left: 10px
+
+.dashboard-container
+  display: flex
+  margin-left: 60px
+  width: calc(100% - 60px)
+
+  .dashboard-content
+    flex-grow: 1
+    padding: 20px
+    min-height: 100vh
+    background: $background-color
+
+// General
+body
+  font-family: 'Arial', sans-serif
+  margin: 0
+  padding: 0
+  background-color: $background-color
+  color: $text-color
+
+.app-container
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+
+.content-container
+  flex: 1
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  padding: 20px
+  width: 100%
+
+// Navbar
+
+.navbar-custom
+  background-color: $primary-color
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que el navbar esté por encima del contenido */
+
+  .navbar-brand
+    font-size: 1.5rem
+    font-weight: bold
+    color: white !important
+
+  .navbar-nav
+  margin-left: auto !important
+    display: flex
+    space-between: space-evenly
+    align-items: center
+    width: 100%  // Se asegura que los elementos estén distribuidos en toda la mitad
+
+  .nav-link
+    color: white !important
+    font-size: 1.1rem
+    padding: 0.5rem 0.25rem
+    transition: color 0.3s
+
+    &:hover
+      color: lighten($primary-color, 20%)
+
+  .navbar-toggler
+    border: none
+    &:focus
+      box-shadow: none
+
+// Hero
+.hero
+  text-align: center
+  padding: 100px 20px
+  width: 100%
+
+  h1
+    font-size: 2.5rem
+    margin-bottom: 10px
+
+  p
+    font-size: 1.2rem
+    color: darken($text-color, 20%)
+
+  .cta-button
+    display: inline-block
+    background-color: $primary-color
+    color: white
+    padding: 10px 20px
+    border-radius: 5px
+    text-decoration: none
+    margin-top: 15px
+    transition: background 0.3s
+
+    &:hover
+      background-color: darken($primary-color, 10%)
+
+// Beneficios
+.benefits
+  display: flex
+  justify-content: center
+  gap: 20px
+  padding: 50px
+  flex-wrap: wrap
+
+.benefit-card
+  background-color: white
+  padding: 20px
+  border-radius: 10px
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1)
+  text-align: center
+  max-width: 300px
+
+  .icon
+    font-size: 2.5rem
+    color: $primary-color
+
+  h3
+    margin-top: 10px
+    font-size: 1.5rem
+
+  p
+    font-size: 1rem
+    color: darken($text-color, 20%)
+
+// Call to Action
+.call-to-action
+  text-align: center
+  padding: 50px 20px
+  background-color: lighten($secondary-color, 20%)
+
+  h2
+    font-size: 2rem
+
+  .cta-button
+    display: inline-block
+    background-color: $primary-color
+    color: white
+    padding: 12px 24px
+    border-radius: 5px
+    text-decoration: none
+    margin-top: 20px
+    transition: background 0.3s
+
+    &:hover
+      background-color: darken($primary-color, 10%)
+
+// Footer
+.footer
+  background-color: $secondary-color
+  color: #4F4F4F
+  text-align: center
+  padding: 20px 0
+  margin-top: auto
+
+  .social-icons
+    margin-top: 10px
+
+    a
+      color: #4F4F4F
+      font-size: 1.5rem
+      margin: 0 10px
+      transition: color 0.3s
+
+      &:hover
+        color: darken(#4F4F4F, 20%)
+
+// Página "Conócenos"
+.conocenos-container
+  max-width: 800px
+  margin: auto
+  text-align: center
+  padding: 50px 20px
+
+  .conocenos-img
+    width: 100%
+    max-width: 600px
+    margin-top: 20px
+    border-radius: 10px
+
+// Formulario de citas
+.solicitud-citas-container
+  max-width: 500px
+  margin: auto
+  padding: 50px 20px
+  text-align: center
+
+.solicitud-citas-form
+  display: flex
+  flex-direction: column
+  gap: 15px
+
+// Sección "Nuestros Servicios"
+.services
+  text-align: center
+  padding: 50px 20px
+
+.services-grid
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
+  gap: 20px
+
+.service-card
+  background-color: #ffffff
+  padding: 20px
+  border-radius: 8px
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1)
+  transition: transform 0.3s ease, box-shadow 0.3s ease
+  text-align: center
+  cursor: pointer
+
+  .icon
+    font-size: 40px
+    margin-bottom: 10px
+    transition: transform 0.3s ease, filter 0.3s ease
+
+  &:hover
+    transform: translateY(-5px)
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2)
+
+    .icon
+      filter: brightness(1.2)
+
+// Contenedor del Dashboard
+.dashboard-container
+  display: flex
+
+.dashboard-content
+  flex-grow: 1
+  padding: 20px
+  background: $background-color
+  min-height: 100vh
+
+// Estilos de las tarjetas del Dashboard
+.dashboard-card
+  text-align: center
+  padding: 20px
+  border-radius: 10px
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1)
+
+.dashboard-icon
+  font-size: 2rem
+  color: $accent-color
+
+.dashboard-card .card-text
+  font-size: 1.5rem
+  font-weight: bold
+
+// Sidebar
+.sidebar
+  width: 60px
+  height: 100vh
+  background-color: $primary-color
+  color: white
+  position: fixed
+  top: 0
+  left: 0
+  display: flex
+  flex-direction: column
+  transition: width 0.3s ease-in-out
+
+  &.expanded
+    width: 200px
+
+  .sidebar-header
+    padding: 10px
+    text-align: center
+    cursor: pointer
+
+  .sidebar-toggle
+    font-size: 24px
+
+  .nav-link
+    color: white
+    padding: 15px
+    text-decoration: none
+    display: flex
+    align-items: center
+
+    &:hover
+      background-color: #495057
+
+  .sidebar-dropdown
+    .sidebar-dropdown-header
+      display: flex
+      align-items: center
+      padding: 15px
+      cursor: pointer
+
+    .sidebar-dropdown-content
+      display: none
+      flex-direction: column
+
+    &:hover .sidebar-dropdown-content
+      display: flex
+
+  svg
+    margin-right: 10px
+
+.login-button
+  background-color: #6C9BCF
+  border: none
+  padding: 10px 15px
+  font-size: 1.1rem
+  border-radius: 5px
+  width: 100%
+  transition: background 0.3s ease
+
+  &:hover
+    background-color: darken(#6C9BCF, 10%)
