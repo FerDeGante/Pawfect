@@ -6,6 +6,14 @@ $background-color: #F9F9F9
 $accent-color: #FF9800 // Un color de acento, puedes cambiarlo por el que prefieras
 $text-light: #F9F9F9 // Color claro para texto en fondos oscuros
 
+@keyframes gradientAnimation
+  0%
+    background-position: 0% 50%
+  50%
+    background-position: 100% 50%
+  100%
+    background-position: 0% 50%
+
 // Layout General
 .app-container
   display: flex
@@ -22,13 +30,15 @@ $text-light: #F9F9F9 // Color claro para texto en fondos oscuros
   flex-direction: column
   padding: 20px
   width: 100%
+  padding-top: 60px  // Asegura que el contenido no se encime con el navbar
+  
 
 // Sidebar
 .sidebar
   width: 60px
   background-color: $primary-color
   color: white
-  transition: width 0.3s ease
+  transition: width 0.3s ease-in-out
   height: 100vh
   position: fixed
   top: 0
@@ -37,6 +47,7 @@ $text-light: #F9F9F9 // Color claro para texto en fondos oscuros
   flex-direction: column
   align-items: center
   padding-top: 10px
+  z-index: 1100 // Asegura que el sidebar esté siempre encima del contenido
 
   &.expanded
     width: 200px
@@ -75,6 +86,7 @@ $text-light: #F9F9F9 // Color claro para texto en fondos oscuros
   display: flex
   margin-left: 60px
   width: calc(100% - 60px)
+  transition: margin-left 0.3s ease-in-out
 
   .dashboard-content
     flex-grow: 1
@@ -370,14 +382,169 @@ body
   svg
     margin-right: 10px
 
-.login-button
-  background-color: #6C9BCF
-  border: none
-  padding: 10px 15px
-  font-size: 1.1rem
-  border-radius: 5px
-  width: 100%
-  transition: background 0.3s ease
+.login-container
+  display: flex
+  justify-content: center
+  align-items: center
+  min-height: 100vh
+  background: linear-gradient(125deg, $secondary-color, #4A6FA5)
+  background-size: 200% 200% // Necesario para la animación
+  animation: gradientAnimation 10s ease infinite
+  margin: 0
+  padding: 0
 
-  &:hover
-    background-color: darken(#6C9BCF, 10%)
+  .login-card
+    width: 100%
+    max-width: 400px
+    padding: 2rem
+    background: white
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1)
+    border-radius: 12px
+    text-align: center
+
+  .login-title
+    font-size: 2rem
+    font-weight: bold
+    color: #333
+    margin-bottom: 1rem
+
+  .login-subtitle
+    font-size: 1rem
+    color: #666
+    margin-bottom: 2rem
+
+  .login-form
+    display: flex
+    flex-direction: column
+
+    .form-control
+      border-radius: 8px
+      border: 1px solid #ddd
+      padding: 10px
+      font-size: 1rem
+      margin-bottom: 1rem
+      transition: border-color 0.3s ease
+
+      &:focus
+        border-color: #6C9BCF
+        box-shadow: 0 0 5px rgba(108, 155, 207, 0.5)
+
+  .login-button
+    background-color: #6C9BCF
+    border: none
+    padding: 12px 15px
+    font-size: 1.1rem
+    border-radius: 8px
+    width: 100%
+    color: white
+    transition: background 0.3s ease
+
+    &:hover
+      background-color: darken(#6C9BCF, 10%)
+
+    &:disabled
+      background-color: #ccc
+      cursor: not-allowed
+
+  .login-footer
+    font-size: 0.9rem
+    color: #666
+    margin-top: 1.5rem
+
+    .register-link
+      color: #6C9BCF
+      text-decoration: none
+      font-weight: bold
+
+      &:hover
+        text-decoration: underline
+
+.productos-container 
+  display: flex
+  flex-direction: column
+  margin-left: 220px; // Ajusta según el tamaño de tu sidebar
+
+.admin-navbar
+  position: fixed
+  top: 0
+  left: 60px
+  width: calc(100% - 60px)
+  height: 60px
+  background-color: $primary-color
+  display: flex
+  align-items: center
+  padding: 0 20px
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1)
+  transition: left 0.3s ease-in-out, width 0.3s ease-in-out
+  z-index: 1000
+
+  &.expanded
+    left: 200px
+    width: calc(100% - 200px)
+
+  .nav-title
+    font-size: 1.5rem
+    font-weight: bold
+    color: white
+    margin: 0
+
+  .admin-nav-links
+    margin-left: auto
+    display: flex
+    align-items: center
+    gap: 20px
+
+  .admin-nav-link
+    color: white
+    font-size: 1rem
+    text-decoration: none
+    transition: color 0.3s
+
+    &:hover
+      color: lighten($primary-color, 20%)
+
+  .admin-profile
+    display: flex
+    align-items: center
+    gap: 10px
+    cursor: pointer
+    position: relative
+
+    .profile-name
+      color: white
+      font-size: 1rem
+
+    .profile-icon
+      width: 40px
+      height: 40px
+      border-radius: 50%
+      background-color: darken($primary-color, 10%)
+      display: flex
+      align-items: center
+      justify-content: center
+      font-size: 1.2rem
+      color: white
+
+    .profile-dropdown
+      position: absolute
+      top: 50px
+      right: 0
+      background-color: white
+      border-radius: 8px
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1)
+      padding: 10px
+      z-index: 1001
+
+      .dropdown-item
+        background: none
+        border: none
+        color: $text-color
+        font-size: 1rem
+        cursor: pointer
+        padding: 8px 16px
+        width: 100%
+        text-align: left
+        transition: background 0.3s
+
+        &:hover
+          background-color: darken(white, 5%)

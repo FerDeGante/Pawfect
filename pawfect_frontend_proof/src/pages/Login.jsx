@@ -18,27 +18,13 @@ function Login() {
         email,
         password,
       });
-
-      // Guardar el token en localStorage
       localStorage.setItem("token", response.data.token);
 
-      // Obtener el rol del usuario desde la respuesta de la API
-      const userRole = response.data.role;
-
-      // Redirigir según el rol
-      switch (userRole) {
-        case "admin":
-          navigate("/admin-dashboard");
-          break;
-        case "employee":
-          navigate("/employee-dashboard");
-          break;
-        case "owner":
-          navigate("/owner-dashboard");
-          break;
-        default:
-          setError("Rol no válido");
-          break;
+      // Verifica el rol del usuario
+      if (response.data.role === "admin") {
+        navigate("/admin-dashboard"); // Redirige al panel de administración
+      } else {
+        navigate("/dashboard"); // Redirige al dashboard de usuario normal
       }
     } catch (err) {
       setError("Correo o contraseña incorrectos");
@@ -64,7 +50,7 @@ function Login() {
             />
           </FloatingLabel>
 
-          <FloatingLabel controlId="floatingPassword" label="Contraseña">
+          <FloatingLabel controlId="floatingPassword" label="Contraseña" className="mb-3">
             <Form.Control
               type="password"
               placeholder="Password"

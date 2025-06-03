@@ -13,9 +13,9 @@ import Register from "./pages/Register";
 import AdminDashboard from "./pages/AdminDashboard";
 import Citas from "./pages/Citas";
 import ClientsTable from "./pages/ClientsTable";
-import Mascotas from "./pages/Mascotas";
-import Productos from "./pages/Productos";
-import Medicamentos from "./pages/Medicamentos";
+import Mascotas from "./pages/MascotasTable";
+import Productos from "./pages/ProductosTable";
+import Medicamentos from "./pages/MedicamentosTable";
 import Usuarios from "./pages/Usuarios";
 import MiNegocio from "./pages/MiNegocio";
 
@@ -38,7 +38,7 @@ function App() {
               <Route path="/register" element={<Register />} />
 
               {/* Rutas Administración */}
-              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin-dashboard" element={<AdminDashboard />} />
               <Route path="/admin/citas" element={<Citas />} />
               <Route path="/admin/clientes" element={<ClientsTable />} />
               <Route path="/admin/mascotas" element={<Mascotas />} />
