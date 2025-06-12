@@ -10,6 +10,7 @@ import {
   FaUserShield,
   FaStore,
   FaBars,
+  FaCashRegister
 } from "react-icons/fa";
 import "../styles/styles.sass";
 
@@ -54,6 +55,11 @@ const Sidebar = () => {
             </div>
           )}
         </div>
+
+        {/* Opción directa para Ventas */}
+        <Nav.Link as={Link} to="/admin/ventas">
+          <FaCashRegister /> {expanded && "Ventas"}
+        </Nav.Link>
 
         {/* Menú desplegable para Administrador */}
         <div className="sidebar-dropdown">

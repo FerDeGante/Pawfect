@@ -6,6 +6,7 @@ import Sidebar from "./components/Sidebar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./styles/styles.sass";
 
+
 // Páginas
 import Inicio from "./pages/Inicio";
 import Login from "./pages/Login";
@@ -18,6 +19,7 @@ import Productos from "./pages/ProductosTable";
 import Medicamentos from "./pages/MedicamentosTable";
 import Usuarios from "./pages/Usuarios";
 import MiNegocio from "./pages/MiNegocio";
+import VentasDashboard from "./pages/VentasDashboard";
 
 function App() {
   const location = useLocation();
@@ -38,6 +40,7 @@ function App() {
               <Route path="/register" element={<Register />} />
 
               {/* Rutas Administración */}
+<Route path="/admin/ventas" element={<VentasDashboard />} />
               <Route path="/admin-dashboard" element={<AdminDashboard />} />
               <Route path="/admin/citas" element={<Citas />} />
               <Route path="/admin/clientes" element={<ClientsTable />} />

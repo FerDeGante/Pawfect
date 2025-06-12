@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Container, Card, Row, Col, Spinner, Nav } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,8 @@ import jwt_decode from "jwt-decode";
 import ClientsTable from "./ClientsTable";
 import Mascotas from "./MascotasTable";
 import Productos from "./ProductosTable";
+import VentasDashboard from "./VentasDashboard";
+
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState(null);
@@ -54,20 +56,24 @@ const AdminDashboard = () => {
         <Spinner animation="border" />
       ) : (
         <>
-          <Nav variant="tabs" activeKey={activeSection} onSelect={(selected) => setActiveSection(selected)}>
-            <Nav.Item>
-              <Nav.Link eventKey="dashboard">📊 Dashboard</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="clients">👥 Clientes</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="pets">🐶 Mascotas</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="products">📦 Productos</Nav.Link>
-            </Nav.Item>
-          </Nav>
+         <Nav variant="tabs" activeKey={activeSection} onSelect={(selected) => setActiveSection(selected)} className="mt-3 mb-4">
+  <Nav.Item>
+    <Nav.Link eventKey="sales">🧾 Ventas</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link eventKey="clients">👥 Clientes</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link eventKey="pets">🐶 Mascotas</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link eventKey="products">📦 Productos</Nav.Link>
+  </Nav.Item>
+  <Nav.Item>
+    <Nav.Link eventKey="dashboard">📊 Dashboard</Nav.Link>
+  </Nav.Item>
+</Nav>
+
 
           {activeSection === "dashboard" && (
             <Row className="mt-3">
@@ -97,10 +103,11 @@ const AdminDashboard = () => {
               </Col>
             </Row>
           )}
-
+{activeSection === "sales" && <VentasDashboard />}
           {activeSection === "clients" && <ClientsTable />}
           {activeSection === "pets" && <Mascotas />}
           {activeSection === "products" && <Productos />}
+        
         </>
       )}
     </Container>

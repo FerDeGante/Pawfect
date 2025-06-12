@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Table, Spinner, Button, OverlayTrigger, Tooltip, Form, Modal, Alert } from "react-bootstrap";
-import { FaEdit, FaTrash, FaPlus, FaSearch, FaFileExcel } from "react-icons/fa";
+import { FaEdit, FaTrash, FaPlus, FaFileExcel } from "react-icons/fa";
 import axios from "axios";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
@@ -32,8 +32,8 @@ const Productos = () => {
       const res = await axios.get("http://localhost:3000/api/v1/products", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setProductos(res.data.products);
-      setFilteredProductos(res.data.products);
+ setProductos(res.data)
+setFilteredProductos(res.data)
     } catch (error) {
       console.error("Error al obtener productos:", error);
       setError("Error al obtener productos. Inténtalo de nuevo más tarde.");
